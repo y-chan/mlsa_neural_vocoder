@@ -80,8 +80,8 @@ class MLSADF(nn.Module):
                 frame_period=hop_length,
                 alpha=self.alpha,
                 taylor_order=config.source_taylor_order,
-                phase="zero",
                 cep_order=config.source_cep_order,
+                phase="zero",
                 mode=config.mode,
             )
         elif config.mode == "single-stage":
@@ -111,8 +111,8 @@ class MLSADF(nn.Module):
                 frame_period=hop_length,
                 alpha=self.alpha,
                 taylor_order=config.filter_taylor_order,
-                phase="zero",
                 cep_order=config.filter_cep_order,
+                phase="minimum",
                 mode=config.mode,
             )
         elif config.mode == "single-stage":
@@ -121,7 +121,7 @@ class MLSADF(nn.Module):
                 frame_period=hop_length,
                 n_fft=n_fft,
                 alpha=self.alpha,
-                phase="zero",
+                phase="minimum",
                 mode=config.mode,
             )
         elif config.mode == "freq-domain":
@@ -132,6 +132,7 @@ class MLSADF(nn.Module):
                 fft_length=n_fft,
                 n_fft=n_fft,
                 alpha=self.alpha,
+                phase="minimum",
                 mode=config.mode,
             )
         self.pulse_generator = ExcitationGeneration(
